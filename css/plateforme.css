@@ -1,0 +1,275 @@
+.cta.large {
+    width: 580px;
+    height: 280px;
+    padding: 16px 20px;
+}
+
+.cta {
+    overflow: hidden;
+}
+
+
+.no-transition, .post-content *, .no-transition * {
+    -moz-transition-property: none;
+    -o-transition-property: none;
+    -webkit-transition-property: none;
+    transition-property: none;
+}
+
+.cta {
+    padding: 16px 20px;
+    width: 280px;
+    height: 280px;
+    margin: 10px;
+    position: relative !important;
+    float: left;
+    overflow: hidden;
+    color: #ffffff;
+}
+
+
+
+
+a:link {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0.3);
+}
+
+
+body *, body .transition, body .transition * {
+    -moz-transition-property: all;
+    -o-transition-property: all;
+    -webkit-transition-property: all;
+    transition-property: all;
+    -moz-transition-duration: 0.3s;
+    -o-transition-duration: 0.3s;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -moz-transition-timing-function: ease;
+    -o-transition-timing-function: ease;
+    -webkit-transition-timing-function: ease;
+    transition-timing-function: ease;
+}
+
+
+.cta:hover a {
+    color: #ffffff;
+}
+
+
+.cta a:hover, .cta a:focus {
+    color: #ffffff;
+}
+
+
+a:link {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0.3);
+}
+
+
+a:hover, a:focus {
+    color: #1c91c4;
+    text-decoration: none;
+    outline: 0;
+}
+
+.cta a {
+    color: #ffffff;
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+
+.no-transition, .post-content *, .no-transition * {
+    -moz-transition-property: none;
+    -o-transition-property: none;
+    -webkit-transition-property: none;
+    transition-property: none;
+}
+
+
+a {
+    color: #009BDE;
+    text-decoration: none;
+}
+
+
+a {
+    background: transparent;
+}
+
+
+.cta img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    }
+
+
+
+
+    .no-transition, .post-content *, .no-transition * {
+    -moz-transition-property: none;
+    -o-transition-property: none;
+    -webkit-transition-property: none;
+    transition-property: none;
+}
+
+
+
+img {
+    display: block;
+    height: auto;
+}
+
+
+img {
+    border: 0;
+}
+
+
+
+
+
+.cta .mask {
+    content: "";
+    display: block;
+    background: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.cta .bottom .date {
+    float: right;
+}
+
+.cta:hover .contentHover {
+    opacity: 1;
+}
+
+.cta .contentHover {
+    position: absolute;
+    color: #ffffff;
+    text-align: center;
+    top: 27%;
+    left: 0;
+    right: 0;
+    font-size: 21px;
+    font-weight: bold;
+    opacity: 0;
+}
+
+
+
+.cta:hover .border-1 {
+    opacity: 1;
+}
+
+
+.cta:hover .border {
+    -moz-transition-duration: 0.1s;
+    -o-transition-duration: 0.1s;
+    -webkit-transition-duration: 0.1s;
+    transition-duration: 0.1s;
+}
+
+.cta .event-type .border {
+    background: #009BDE;
+}
+
+
+.cta .border.border-1 {
+    width: 100%;
+    height: 5px;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    width: 100%;
+}
+
+.cta .border {
+    display: block;
+    position: absolute;
+    background: #009BDE;
+    -moz-transition-timing-function: linear;
+    -o-transition-timing-function: linear;
+    -webkit-transition-timing-function: linear;
+    transition-timing-function: linear;
+    -moz-transition-duration: 0.1s;
+    -o-transition-duration: 0.1s;
+    -webkit-transition-duration: 0.1s;
+    transition-duration: 0.1s;
+    z-index: 2;
+}
+
+.cta .border.border-2 {
+    width: 5px;
+    height: 100%;
+    right: 0;
+    top: 5px;
+    opacity: 0;
+}
+
+.cta .border.border-3 {
+    height: 5px;
+    right: 5px;
+    left: 0%;
+    bottom: 0%;
+    opacity: 0;
+}
+
+.cta .border.border-4 {
+    width: 5px;
+    left: 0%;
+    top: 5px;
+    bottom: 5px;
+    opacity: 0;
+}
+
+.cta .bottom {
+    position: absolute;
+    bottom: 14px;
+    border-top: 1px solid #ffffff;
+    right: 20px;
+    left: 20px;
+    padding-top: 4px;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.cta.large h3 {
+    font-size: 30px;
+    line-height: 36px !important;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.cta h4 {
+    font-weight: bold;
+    font-size: 21px;
+    position: relative;
+    line-height: 24px;
+    -moz-transition-duration: 0.5s;
+    -o-transition-duration: 0.5s;
+    -webkit-transition-duration: 0.5s;
+    transition-duration: 0.5s;
+    color: #ffffff;
+}
+
+
+
+
+.cta.event-type h4 {
+    color: #009BDE;
+}
+
+
+.cta .contentHover i {
+    font-size: 90px;
+    display: block;
+}

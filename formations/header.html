@@ -1,0 +1,140 @@
+<header id="header">
+        <nav class="navbar navbar-fixed-top" role="banner">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="../index.php"><img class="img-responsive" src="../images/logo.jpg" alt="logo_Institut salomon" width="75" style="position: relative; top: -60%;"/></a>
+                </div>
+				
+             <div class="collapse navbar-collapse navbar-right">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="../index.php">ACCUEIL</a></li>
+                        <li><a href="../about-us.php">Apropos de Nous</a></li>
+						<li><a href="../services.php">Vitrine E-Learning</a></li>
+						
+						<li class="dropdown"><a href="#" class="dropdown-toggle " data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">Formations <i class="fa fa-angle-down"></i></a>
+							<ul class="dropdown-menu">
+							   <li><a href="MS Project Server Professionnel.php" title="MS Project Server Professionnel">MS Project Server Prof</a></li>
+
+								<li><a href="MS Access.php" title="MS Access">MS Access</a></li>
+
+								<li><a href="Excel VBA.php" title="Excel VBA">Excel VBA</a></li>
+
+								<li><a href="Entreprenariat et Montage de Projet.php" title="Entreprenariat et Montage de Projet">Entreprenariat</a></li>
+
+								<li><a href="Infographie 2D3D4D.php" title="Infographie 2D/3D/4D">Infographie 2D/3D/4D</a></li>
+
+								<li><a href="Montage Video et Spot.php" title="Montage Vidéo et Spot">Montage Vidéo et Spot</a></li>
+
+								<li><a href="Sage - Comptabilite.php" title="Sage - Comptabilité">Sage - Comptabilité</a></li>
+
+								<li><a href="Sage - Gescom.php" title="Sage - Gescom">Sage - Gescom</a></li>
+								
+								<li><a href="Les Fintech.php" title="Les Fintech">Les Fintech</a></li>
+								
+								<li><a href="Culture Digitale.php" title="Culture Digitale">Culture Digitale</a></li>
+
+								<li><a href="Marketing Digital.php" title="Marketing Digital">Marketing Digital</a></li>
+								
+								<li><a href="developpement Web.php" title="Web">Développement Web</a></li>
+
+								<li><a href="developpement Mobile.php" title="Mobile">Développement Mobile</a></li>
+								
+								<li><a href="management_projets.php" title="Management de Projets">Management des Projets</a></li>
+
+								<li><a href="Management Associatif.php" title="Management Associatif">Management Associatif</a></li>
+								
+								<li><a href="Coutenance.php" title="Coutenance">Coutenance</a></li>
+                            </ul>
+						</li>
+						
+						
+                        <li><a href="../portfolio.php">Portfolio</a></li>
+						<li><a href="../contact-us.php">Contact</a></li>
+						
+						 <li class="dropdown"><a href="#" class="dropdown-toggle " data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">Services E-Learning <i class="fa fa-angle-down"></i></a>
+							<ul class="dropdown-menu">
+							<?php
+							if( isset($_SESSION['ID']) AND $_SESSION['ID']==2 )
+	                         {
+							
+							 if( isset($_SESSION['contact_F']) AND !empty($_SESSION['contact_F']) )
+	                         {
+							 ?>
+							 <li><a href="../prof.php">Espace Formateurs</a></li>
+							 <li><a href="../deconnexion.php?formateur=2" title="Vous pouvez vous déconnecter">Déconnexion</a></li>
+							 <?php
+							 }
+							 }
+							 
+							 else if( isset($_SESSION['ID']) AND $_SESSION['ID']==1 )
+	                         {
+							 if(isset($_SESSION['contact_Etu']) AND !empty($_SESSION['contact_Etu']))
+							 {?>
+							 <li><a href="../actualites.php">Espace Etudiants</a></li>
+							 <li><a href="../deconnexion.php?etudiant=2" title="Vous pouvez vous déconnecter">Déconnexion</a></li>
+							 <?php
+							 }
+							 }
+				             else
+							 {
+							 ?>
+							   <li><a href="#" data-toggle="modal" data-target="#login_1" title="s'identifier avant de naviguer sur notre site donne des Avantages">  Connexion</a></li>
+							     <li><a href="../inscription.php" title="inscrivez-vous pour suivre nos cours">Inscription</a></li>
+							 <?php
+							 }
+							?>
+							   <li><a href="http://institutsalomon.blogspot.com/">Blog</a></li>
+                            </ul>
+						</li>   
+						
+<?php	
+	if( isset($_SESSION['ID']) AND $_SESSION['ID']==2 )
+ {
+												 
+ if( isset($_SESSION['contact_F']) AND !empty($_SESSION['contact_F']) )
+ {						 
+ include '../configuration serveur/config_server.php';
+  $req33=$bdd->prepare('SELECT * FROM formateur WHERE numero=:user');
+ $req33->execute(array('user'=>$_SESSION['contact_F']));
+ $profil = $req33->fetch();
+?> 
+ <img src="../<?php echo $profil['avatars'];?>" class="img-rounded" width="35px" height="35px" align="">
+ <li><a href="#"><?php echo $profil['prenom_f'];?></a></li>
+ <?php
+
+ }
+ }
+ 
+  else if( isset($_SESSION['ID']) AND $_SESSION['ID']==1 )
+   {
+  if( isset($_SESSION['contact_Etu']) AND !empty($_SESSION['contact_Etu']) )
+ {						 
+ include '../configuration serveur/config_server.php';
+  $req34=$bdd->prepare('SELECT * FROM membre WHERE numero=:user');
+ $req34->execute(array('user'=>$_SESSION['contact_Etu']));
+ $profil1 = $req34->fetch();
+?> 
+ <img src="../<?php echo $profil1['avatars'];?>" title="<?php echo $profil1['prenom_membre'].' '.$profil1['nom_membre'].' Cours Suivi: '.$profil1['cours_choisi'];?>" class="img-rounded" width="35px" height="35px" align="">
+ <li><a href="#"><?php echo $profil1['prenom_membre'];?></a></li>
+ <?php
+ }
+ }
+ else
+ {
+?>  
+<i class="fa fa-user fa-2x"></i>
+<?php
+}
+?>	 
+                    </ul>
+                </div>
+            </div><!--/.container-->
+        </nav><!--/nav-->
+		
+    </header><!--/header-->

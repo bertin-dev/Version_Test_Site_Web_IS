@@ -1,0 +1,422 @@
+-- phpMyAdmin SQL Dump
+-- version 4.1.4
+-- http://www.phpmyadmin.net
+--
+-- Client :  127.0.0.1
+-- Généré le :  Lun 19 Juin 2017 à 12:19
+-- Version du serveur :  5.6.15-log
+-- Version de PHP :  5.5.8
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+--
+-- Base de données :  `institut_salomon`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `actualite`
+--
+
+CREATE TABLE IF NOT EXISTS `actualite` (
+  `id_actualite` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `ref_formateur` int(10) unsigned NOT NULL,
+  `ref_filiere` int(10) unsigned NOT NULL,
+  `ref_membre` int(10) unsigned NOT NULL,
+  `nom_cours` varchar(100) NOT NULL,
+  `titre` varchar(255) NOT NULL,
+  `contenu` text NOT NULL,
+  `image` varchar(255) NOT NULL,
+  `poster_img` varchar(255) NOT NULL,
+  `fichier` varchar(255) NOT NULL,
+  `taille` int(10) unsigned NOT NULL,
+  `aime` varchar(255) NOT NULL,
+  `noaime` varchar(255) NOT NULL,
+  `date_ajout` int(11) NOT NULL,
+  PRIMARY KEY (`id_actualite`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `admin`
+--
+
+CREATE TABLE IF NOT EXISTS `admin` (
+  `id_admin` int(11) NOT NULL AUTO_INCREMENT,
+  `nom_complet` varchar(100) NOT NULL,
+  `numero` varchar(100) NOT NULL,
+  `date_connexion` int(11) NOT NULL,
+  `nombre_connexion` int(11) NOT NULL,
+  `temps_connexion` int(11) NOT NULL,
+  PRIMARY KEY (`id_admin`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `chat_online`
+--
+
+CREATE TABLE IF NOT EXISTS `chat_online` (
+  `online_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `online_ip` varchar(100) CHARACTER SET latin1 COLLATE latin1_german1_ci NOT NULL,
+  `online_user` int(10) unsigned NOT NULL,
+  `online_status` enum('0','1','2') CHARACTER SET latin1 COLLATE latin1_german1_ci NOT NULL,
+  `online_time` bigint(21) NOT NULL,
+  PRIMARY KEY (`online_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+
+--
+-- Contenu de la table `chat_online`
+--
+
+INSERT INTO `chat_online` (`online_id`, `online_ip`, `online_user`, `online_status`, `online_time`) VALUES
+(7, '127.0.0.1', 12, '2', 1497867561);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `commentaire`
+--
+
+CREATE TABLE IF NOT EXISTS `commentaire` (
+  `id_commentaire` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `ref_actualite` int(10) unsigned NOT NULL,
+  `ref_membre` int(10) unsigned NOT NULL,
+  `contenu` varchar(255) NOT NULL,
+  `date_poste` int(11) NOT NULL,
+  PRIMARY KEY (`id_commentaire`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `etat`
+--
+
+CREATE TABLE IF NOT EXISTS `etat` (
+  `id_etat` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `etat_compte` enum('0','1') NOT NULL,
+  PRIMARY KEY (`id_etat`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `filiere`
+--
+
+CREATE TABLE IF NOT EXISTS `filiere` (
+  `id_filiere` int(11) NOT NULL AUTO_INCREMENT,
+  `nom_filiere` varchar(100) NOT NULL,
+  PRIMARY KEY (`id_filiere`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=40 ;
+
+--
+-- Contenu de la table `filiere`
+--
+
+INSERT INTO `filiere` (`id_filiere`, `nom_filiere`) VALUES
+(1, 'informatique'),
+(2, 'management'),
+(3, 'management'),
+(4, 'management'),
+(5, 'formation cle en main'),
+(6, 'formation cle en main'),
+(7, 'formation cle en main'),
+(8, 'management'),
+(9, 'formation a la carte'),
+(10, 'management'),
+(11, 'management'),
+(12, 'management'),
+(13, 'formation a la carte'),
+(14, 'formation cle en main'),
+(15, 'formation cle en main'),
+(16, 'formation cle en main'),
+(17, 'formation cle en main'),
+(18, 'formation cle en main'),
+(19, 'formation a la carte'),
+(20, 'management'),
+(21, 'formation cle en main'),
+(22, 'formation a la carte'),
+(23, 'formation cle en main'),
+(24, 'formation cle en main'),
+(25, 'formation cle en main'),
+(26, 'formation cle en main'),
+(27, 'formation cle en main'),
+(28, 'formation cle en main'),
+(29, 'formation cle en main'),
+(30, 'formation a la carte'),
+(31, 'formation cle en main'),
+(32, 'formation a la carte'),
+(33, 'formation a la carte'),
+(34, 'secretariat'),
+(35, 'secretariat'),
+(36, 'informatique'),
+(37, 'management'),
+(38, 'management'),
+(39, 'management');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `formateur`
+--
+
+CREATE TABLE IF NOT EXISTS `formateur` (
+  `id_formateur` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `nom_f` varchar(100) NOT NULL,
+  `ref_quartier` int(10) unsigned NOT NULL,
+  `cours_dispense` varchar(255) NOT NULL,
+  `prenom_f` varchar(100) NOT NULL,
+  `civilite` varchar(5) NOT NULL,
+  `email` varchar(30) NOT NULL,
+  `numero` int(11) NOT NULL,
+  `filiere` varchar(100) NOT NULL,
+  `mdp` varchar(100) NOT NULL,
+  `biographie` text NOT NULL,
+  `experience` varchar(50) NOT NULL,
+  `matricule` varchar(20) NOT NULL,
+  `date_inscription` int(11) NOT NULL,
+  `date_connexion` int(11) NOT NULL,
+  `avatars` varchar(100) NOT NULL,
+  `ip_form` varchar(50) NOT NULL,
+  `clef_activation` varchar(100) NOT NULL,
+  `etat_compte` enum('0','1') NOT NULL,
+  PRIMARY KEY (`id_formateur`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+
+--
+-- Contenu de la table `formateur`
+--
+
+INSERT INTO `formateur` (`id_formateur`, `nom_f`, `ref_quartier`, `cours_dispense`, `prenom_f`, `civilite`, `email`, `numero`, `filiere`, `mdp`, `biographie`, `experience`, `matricule`, `date_inscription`, `date_connexion`, `avatars`, `ip_form`, `clef_activation`, `etat_compte`) VALUES
+(1, 'Mouelle', 1, 'Marketing Digital', 'Henry', 'M', 'henry@yahoo.fr', 699903461, 'informatique', 'c1cb19ec6a4d3ced7e76302d786f87f022e8cbcb', 'Enseingnat de Marketing digital a l''universitÃ© de Toulouse en france', 'Dr', 'ISalomon', 1497081997, 0, 'avatars/femme.png', '127.0.0.1', 'bcdef459', '0'),
+(2, 'NGANDEKO', 3, 'Web Design', 'MIMI', 'M', 'Pekayacinthe@yahoo.fr', 987856756, 'formation cle en main', 'c1cb19ec6a4d3ced7e76302d786f87f022e8cbcb', 'JKNKJNKJNK', 'Prof', 'ISalomon', 1497119271, 0, 'avatars/femme.png', '127.0.0.1', 'ef013679', '0'),
+(3, 'DFSFSDF', 35, 'secretaire Bureautique Bilingue', 'FDFDSFSDFDS', 'Mme', 'BERTYO@UAK.FR', 245647567, 'secretariat', 'c1cb19ec6a4d3ced7e76302d786f87f022e8cbcb', 'sdcdscdscdscsdc', 'Marketeur', 'ISalomon', 1497859372, 0, 'avatars/femme.png', '127.0.0.1', 'abc14589', '0'),
+(4, 'cdscsc', 36, 'Culture Digitale', 'FDFDSFSDFDS', 'Mme', 'BdcdERTYO@UAK.FR', 99887567, 'informatique', 'c1cb19ec6a4d3ced7e76302d786f87f022e8cbcb', 'ZCSDCSDCSCD', 'RÃ©dacteur', 'ISalomon', 1497859648, 0, 'avatars/femme.png', '127.0.0.1', 'ade23578', '0'),
+(5, 'DFSFSDF', 3, 'Management des Projets', 'ZFDSFSD', 'Mme', 'BERTYKKO@UAK.FR', 354543543, 'management', 'c1cb19ec6a4d3ced7e76302d786f87f022e8cbcb', 'FDZEFEZFZFZEFZF', 'Infographe', 'ISalomon', 1497866592, 0, '', '127.0.0.1', 'cde34789', '0'),
+(6, 'DFSFSDF', 3, 'Management des Projets', 'ZFDSFSD', 'Mme', 'BERTYKGKO@UAK.FR', 354548543, 'management', 'c1cb19ec6a4d3ced7e76302d786f87f022e8cbcb', 'FDZEFEZFZFZEFZF', 'Infographe', 'ISalomon', 1497866681, 0, '', '127.0.0.1', 'bcde0567', '0');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `like_dislike`
+--
+
+CREATE TABLE IF NOT EXISTS `like_dislike` (
+  `id_favoris` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `ref_actualite` int(11) unsigned NOT NULL,
+  `ref_membre` int(10) unsigned NOT NULL,
+  `ip` varchar(25) NOT NULL,
+  `rate` int(1) NOT NULL,
+  `dt_rated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id_favoris`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `membre`
+--
+
+CREATE TABLE IF NOT EXISTS `membre` (
+  `id_membre` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `ref_admin` int(10) unsigned NOT NULL,
+  `ref_formateur` int(10) unsigned NOT NULL,
+  `ref_filiere` int(10) unsigned NOT NULL,
+  `ref_quartier` int(10) unsigned NOT NULL,
+  `nom_membre` varchar(100) NOT NULL,
+  `prenom_membre` varchar(100) NOT NULL,
+  `password` varchar(150) NOT NULL,
+  `civilite` varchar(5) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `age` int(11) NOT NULL,
+  `numero` varchar(15) NOT NULL,
+  `cours_choisi` varchar(100) NOT NULL,
+  `avatars` varchar(150) NOT NULL,
+  `date_inscription` bigint(20) NOT NULL,
+  `date_connexion` int(11) NOT NULL,
+  `clef_activation` varchar(20) NOT NULL,
+  `ip_membre` varchar(50) NOT NULL,
+  `etat_compte` enum('0','1') NOT NULL,
+  PRIMARY KEY (`id_membre`),
+  UNIQUE KEY `clef_activation` (`clef_activation`),
+  UNIQUE KEY `clef_activation_2` (`clef_activation`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
+
+--
+-- Contenu de la table `membre`
+--
+
+INSERT INTO `membre` (`id_membre`, `ref_admin`, `ref_formateur`, `ref_filiere`, `ref_quartier`, `nom_membre`, `prenom_membre`, `password`, `civilite`, `email`, `age`, `numero`, `cours_choisi`, `avatars`, `date_inscription`, `date_connexion`, `clef_activation`, `ip_membre`, `etat_compte`) VALUES
+(1, 0, 6, 2, 2, 'fzrfrfre', 'frefrfef', 'c1cb19ec6a4d3ced7e76302d786f87f022e8cbcb', 'M', 'bJJhjgHf@ygcvgh.FR', 16, '345345435', 'Gestion de la Paie', 'avatars/homme.png', 1497115202, 0, 'bef04568', '127.0.0.1', '0'),
+(2, 0, 6, 2, 3, 'FCGFCGFCG', 'WXJHJH', 'c1cb19ec6a4d3ced7e76302d786f87f022e8cbcb', 'M', 'bhjgkjjzdsqdskf@ygcvgh.FR', 16, '786785675', 'Gestion de la Paie', 'avatars/homme.png', 1497115830, 0, 'acdef016', '127.0.0.1', '0'),
+(3, 0, 6, 2, 3, 'KJNJKNKJ', 'CGFXFDC', 'c1cb19ec6a4d3ced7e76302d786f87f022e8cbcb', 'M', 'bhjgERf@ygcvgh.FR', 16, '908098908', 'Management des Projets', 'avatars/homme.png', 1497116203, 0, 'bcef0189', '127.0.0.1', '0'),
+(4, 0, 0, 5, 3, 'MOUNOK', 'BERTIN', 'c1cb19ec6a4d3ced7e76302d786f87f022e8cbcb', 'M', 'bhjikgf@ygcvgh.FR', 16, '564897897', 'Excel VBA', 'avatars/homme.png', 1497119046, 0, 'bcde0367', '127.0.0.1', '0'),
+(5, 0, 2, 5, 7, 'JKNBKJNKJ', 'FGCGFCGFC', 'c1cb19ec6a4d3ced7e76302d786f87f022e8cbcb', 'M', 'bJHJHHhjgkjjKkf@ygcvgh.FR', 16, '897986786', 'Ms Access', 'avatars/homme.png', 1497120377, 0, 'bc035789', '127.0.0.1', '0'),
+(6, 0, 6, 2, 3, 'MOUNOK', 'NORBERTO', 'c1cb19ec6a4d3ced7e76302d786f87f022e8cbcb', 'M', 'bhjikHgf@ygcvgh.FR', 16, '987865675', 'Gestion de la Paie', 'avatars/homme.png', 1497120556, 0, 'bde02358', '127.0.0.1', '0'),
+(7, 0, 0, 9, 3, 'kojokftcfg', 'kjnbkjnkjnk', 'c1cb19ec6a4d3ced7e76302d786f87f022e8cbcb', 'M', 'bhFDGjikhgf@ygcvgh.FR', 16, '897865786', 'Rediger un Plan Capacitif', 'avatars/homme.png', 1497128328, 0, 'adf02378', '127.0.0.1', '0'),
+(8, 0, 6, 2, 3, 'KUATE', 'JKHJBHUB', 'c1cb19ec6a4d3ced7e76302d786f87f022e8cbcb', 'M', 'bhjikXHgf@ygcvgh.FR', 16, '566546554', 'Management des Projets', '', 1497151574, 0, 'acd23579', '127.0.0.1', '0'),
+(9, 0, 6, 2, 3, 'JHJJ', 'FXGFX', 'c1cb19ec6a4d3ced7e76302d786f87f022e8cbcb', 'Mme', 'bhFDJdfgdGjikgf@ygcvgh.FR', 16, '098567456', 'Management des Projets', '', 1497151999, 0, 'ace01236', '127.0.0.1', '0'),
+(10, 0, 2, 5, 14, 'ygfvytvy', 'jhbhjbjhk', 'c1cb19ec6a4d3ced7e76302d786f87f022e8cbcb', 'M', 'berty@yahh.fr', 31, '766589790', 'Excel VBA', '', 1497851934, 0, '', '127.0.0.1', '0'),
+(11, 0, 0, 9, 32, 'ygfvytvy', 'MLKLMKML', 'c1cb19ec6a4d3ced7e76302d786f87f022e8cbcb', 'M', 'blkkdxderty@yahh.fr', 32, '546546546', 'Rediger un Plan Capacitif', '', 1497858957, 0, 'adf01267', '127.0.0.1', '0'),
+(12, 0, 0, 34, 7, 'ygfvytvy', 'MLKLMKML', '88facedcac8751f8d33300a0cea23442804ac560', 'Mme', 'bertUUUUUUUUUUUUUy@yahh.fr', 16, '896745645', 'Assistance de Direction ou Manager', '', 1497859037, 0, 'ab456789', '127.0.0.1', '0');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `mespreferes`
+--
+
+CREATE TABLE IF NOT EXISTS `mespreferes` (
+  `ref_actualite` int(11) unsigned NOT NULL,
+  `ref_membre` int(11) unsigned NOT NULL,
+  `aime` varchar(255) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `message`
+--
+
+CREATE TABLE IF NOT EXISTS `message` (
+  `id_message` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'identifiant du message envoyé',
+  `ref_admin` int(10) unsigned NOT NULL COMMENT 'cl" etrangère qui est primaire dans la table adiministrateur',
+  `nom_exp` varchar(100) NOT NULL,
+  `email_msg` varchar(100) NOT NULL,
+  `numero_msg` varchar(255) NOT NULL,
+  `sujet_msg` varchar(255) NOT NULL,
+  `contenu` text NOT NULL COMMENT 'contenu du message',
+  `date_reception_msg` int(11) NOT NULL COMMENT 'date d''envoi',
+  PRIMARY KEY (`id_message`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Contenu de la table `message`
+--
+
+INSERT INTO `message` (`id_message`, `ref_admin`, `nom_exp`, `email_msg`, `numero_msg`, `sujet_msg`, `contenu`, `date_reception_msg`) VALUES
+(1, 0, 'Bertin Mounok', 'bertmoun@yahoo.fr', '694048925', 'Amortissement', 'je suis au quartier', 145435543),
+(2, 0, 'iuiuhhioh', 'your@email.com', '0978678567', 'HGVJHVJH', 'jkjkhjnklnjlknklnl', 1497850731),
+(3, 0, 'iuiuhhioh', 'your@email.com', '0978678567', 'HGVJHVJH', 'jkjkhjnklnjlknklnl', 1497851387);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `news`
+--
+
+CREATE TABLE IF NOT EXISTS `news` (
+  `id_information` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `information` varchar(255) NOT NULL,
+  `taille` int(11) NOT NULL,
+  PRIMARY KEY (`id_information`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+
+--
+-- Contenu de la table `news`
+--
+
+INSERT INTO `news` (`id_information`, `information`, `taille`) VALUES
+(1, 'FORMATION VACANCE 2017', 38);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `quartier`
+--
+
+CREATE TABLE IF NOT EXISTS `quartier` (
+  `id_quartier` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `nom_quartier` varchar(100) NOT NULL,
+  PRIMARY KEY (`id_quartier`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=40 ;
+
+--
+-- Contenu de la table `quartier`
+--
+
+INSERT INTO `quartier` (`id_quartier`, `nom_quartier`) VALUES
+(1, 'Denver'),
+(2, 'Ange_Raphael'),
+(3, 'Akwa'),
+(4, 'Akwa'),
+(5, 'Akwa'),
+(6, 'Akwa'),
+(7, 'Bonamoussadi'),
+(8, 'Akwa'),
+(9, 'Akwa'),
+(10, 'Akwa'),
+(11, 'Akwa'),
+(12, 'Akwa'),
+(13, 'Makepe'),
+(14, 'Santa_Barbara'),
+(15, 'Santa_Barbara'),
+(16, 'Santa_Barbara'),
+(17, 'Santa_Barbara'),
+(18, 'Santa_Barbara'),
+(19, 'Camp_Yabassi'),
+(20, 'Akwa'),
+(21, 'Akwa'),
+(22, 'Akwa'),
+(23, 'Akwa'),
+(24, 'Akwa'),
+(25, 'Akwa'),
+(26, 'Akwa'),
+(27, 'Akwa'),
+(28, 'Akwa'),
+(29, 'Akwa'),
+(30, 'Akwa'),
+(31, 'Akwa'),
+(32, 'Bepanda'),
+(33, 'Bepanda'),
+(34, 'Bonamoussadi'),
+(35, 'Bonanjo'),
+(36, 'Ndogbong'),
+(37, 'Akwa'),
+(38, 'Akwa'),
+(39, 'Akwa');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `telechargement`
+--
+
+CREATE TABLE IF NOT EXISTS `telechargement` (
+  `id_telecharger` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `ref_actualite` int(11) unsigned NOT NULL,
+  `ref_membre` int(10) unsigned NOT NULL,
+  `nombre` varchar(255) NOT NULL,
+  PRIMARY KEY (`id_telecharger`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `visiteur`
+--
+
+CREATE TABLE IF NOT EXISTS `visiteur` (
+  `id_visiteur` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Informations sur le visteur ',
+  `ip_visiteur` varchar(100) NOT NULL COMMENT 'adresse ip de la machine du visiteur',
+  `date_visite` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'date et heure a laquel le visteur a ouvert le site web de visiteur',
+  `timestamp2` int(11) NOT NULL,
+  `duree_navigation` varchar(255) NOT NULL COMMENT 'durée d''activités de l''internaute. duree = timestamp2-timestamp1',
+  PRIMARY KEY (`id_visiteur`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

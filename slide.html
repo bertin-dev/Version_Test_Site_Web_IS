@@ -1,0 +1,87 @@
+<div class="slider col-md-6">
+		<div class="container">
+			
+			<?php
+include 'configuration serveur/config_server.php';
+ $info=$bdd->prepare('SELECT information, taille FROM news ORDER BY id_information DESC');
+ $info->execute();
+ $alaUne = $info->fetch(); 
+ 
+  if(isset($alaUne['information']))
+{
+?>
+<div class="wow fadeInUp" data-wow-offset="0" data-wow-delay="0.6s">			
+				<!--Contenu: Message de Bienvenue-->
+				<div class="searchtitle" id="slogan">
+				<p class="lead" style="font-size: <?php echo $alaUne['taille']; ?>px;"><q><strong><?php echo $alaUne['information']; ?></strong></q></p> 
+				
+				</div>	
+			</div>
+<?php
+}
+?>
+			
+
+			<div id="about-slider">
+				<div id="carousel-slider" class="carousel slide" data-ride="carousel">
+					<!-- Indicators -->
+				  	<ol class="carousel-indicators visible-xs">
+					    <li data-target="#carousel-slider" data-slide-to="0" class="active"></li>
+					    <li data-target="#carousel-slider" data-slide-to="1"></li>
+					    <li data-target="#carousel-slider" data-slide-to="2"></li>
+				  	</ol>
+
+					<div class="carousel-inner">
+						<div class="item active">
+							<img src="images/sliders/slide1.jpg" class="img-responsive" alt=""> 
+					   </div>
+					   <div class="item">
+							<img src="images/sliders/slide2.jpg" class="img-responsive" alt=""> 
+					   </div> 
+					   <div class="item">
+							<img src="images/sliders/slide3.jpg" class="img-responsive" alt=""> 
+					   </div> 
+					</div>
+					
+					<a class="left carousel-control hidden-xs" href="#carousel-slider" data-slide="prev">
+						<i class="fa fa-angle-left"></i> 
+					</a>
+					
+					<a class="right carousel-control hidden-xs"href="#carousel-slider" data-slide="next">
+						<i class="fa fa-angle-right"></i> 
+					</a>
+				</div> <!--/#carousel-slider-->
+			</div><!--/#about-slider-->
+
+		</div>				   	
+	                           <center>
+								<ul class="social_icons">
+										<li><a href="https://www.facebook.com/institusalomon/?__fns&hash=Ac323pliE89bIieO" title="Vous pouvez visiter notre page facebook"><i class="fa fa-facebook"></i></a></li>
+										<li><a href="https://twitter.com/The_Builders_IN" title="vous avez la possibilité de jetter un coup d'oeil sur notre page TWITTER"><i class="fa fa-twitter"></i></a></li> 
+										<li><a href="https://plus.google.com/u/0/103239564321426732982" title="Vous pouvez visiter notre page GOOGLE+"><i class="fa fa-google-plus"></i></a></li>
+										<li><a href="https://www.linkedin.com/in/institutsalomon/" title="Pour plus d'informations à notre sujet, cliquez juste sur LINKEDIN"><i class="fa fa-linkedin"></i></a></li> 
+										<li><a href="http://institutsalomon.blogspot.com/" title="Pour des Infos Supplémentaires, Rendez-Vous sur notre Blog en 1 click"><i class="fa fa-comments"></i></a></li>
+									</ul>
+							</center>
+	</div>
+	
+	
+	
+	
+		<!--Texte Clignotant-->
+	<script>
+	var clignotement = function(){ 
+   if (document.getElementById('slogan').style.visibility=='visible'){ 
+      document.getElementById('slogan').style.visibility='hidden'; 
+   } 
+   else{ 
+   document.getElementById('slogan').style.visibility='visible'; 
+   } 
+}; 
+
+// mise en place de l appel de la fonction toutes les 0.8 secondes 
+// Pour arrêter le clignotement : clearInterval(periode); 
+periode = setInterval(clignotement, 1600);
+	
+	</script>
+		  

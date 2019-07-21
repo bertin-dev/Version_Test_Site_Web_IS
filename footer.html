@@ -1,0 +1,132 @@
+<section id="bottom">
+        <div class="container wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">
+            <div class="row">
+                <div class="col-md-3 col-sm-6">
+                    <div class="widget">
+                        <h3>CONTACTEZ-NOUS</h3>
+						<ul class="link-list">
+					<address>
+					<strong>CAMEROUN</strong>
+					 <li><i class="fa fa-home fa-2x"></i> Douala Cité-Sic, à Côté de l'Alliance Biblique (lieu-dit, ancienne pharmacie de l'océan)</li>
+						<li><i class="fa fa-envelope fa-2x"></i> info@the-builders.org</li>
+						<li><i class="fa fa-phone fa-2x"></i> (+237) 651 506 567 / 655 322 777</li>
+						 <li><i class="fa fa-rss fa-2x" arial-hidden="true"></i> <a href="www.yahoo.fr"  title="INFORMATION A LA UNE">Flux RSS News</a></li>
+					 </address>
+					  
+						</ul>
+                    </div> 	
+                </div><!--/.col-md-3-->
+
+                <div class="col-md-3 col-sm-6">
+                    <div class="widget">
+                        <h3>Supports</h3>
+                        <ul>
+                            <li><i class="fa fa-laptop fa-2x"></i><a href="services.php">  Service E-Learning</a></li>
+                            <li><i class="fa fa-comments fa-2x"></i><a href="http://institutsalomon.blogspot.com/">  Blog</a></li> 
+                            <li><i class="fa fa-cloud-download fa-2x"></i><a href="https://hubic.com/home/browser/" title="Vous avez la posibilté de stocker vos documents dans ce nuage">  Service Cloud</a></li>
+							
+							
+							
+							
+										<?php
+							if( isset($_SESSION['ID']) AND $_SESSION['ID']==2 )
+	                         {
+							
+							 if( isset($_SESSION['contact_F']) AND !empty($_SESSION['contact_F']) )
+	                         {
+							 ?>
+							 <li><a href="prof.php">Espace Formateurs</a></li>
+							 <li><i class="fa fa-user fa-2x"></i><a href="deconnexion.php?formateur=2" title="Vous pouvez vous déconnecter">  Déconnectez-Vous</a></li> 
+							 <?php
+							 }
+							 }
+							 
+							 else if( isset($_SESSION['ID']) AND $_SESSION['ID']==1 )
+	                         {
+							 if(isset($_SESSION['contact_Etu']) AND !empty($_SESSION['contact_Etu']))
+							 {?>
+							 <li><a href="actualites.php">Espace Etudiants</a></li>
+							 <li><i class="fa fa-user fa-2x"></i><a href="deconnexion.php?etudiant=2" title="Vous pouvez vous déconnecter">  Déconnectez-Vous</a></li>
+							 <?php
+							 }
+							 }
+				             else
+							 {
+							 ?>
+							   <li><i class="fa fa-user fa-2x"></i><a href="#" data-toggle="modal" data-target="#login_1" title="s'identifier avant de naviguer sur notre site donne des Avantages">  Connectez-Vous</a></li> 
+                            <li><i class="fa fa-sign-in fa-2x" aria-hidden="true"></i>
+                             <a href="inscription.php" title="s'authentifier en vous incrivant">  Inscrivez-Vous</a></li>
+							 <?php
+							 }
+							?>
+							
+							
+							
+
+							<li><i class="fa fa-cogs fa-2x"></i><a href="#" data-toggle="modal" data-target="#t_and_c_m" title="Conditions Générales d'utilisation">  Conditions Générales</a></li> 
+                        </ul>
+                    </div>    
+                </div><!--/.col-md-3-->
+
+                <div class="col-md-3 col-sm-6">
+                    <div class="widget">
+                        <h3>Autres Prestations</h3>
+                        <ul>
+                            <li><a href="#">Formations-intra Entreprise/sur mesure</a></li>
+							<li><a href="#">Formations Coaching</a></li>
+							<li><a href="#">Formations Incontournables</a></li>
+							<li><a href="#">Formations Certifiantes et Diplômantes</a></li>
+                            <li><a href="#">SEO Marketing</a></li>
+							<li><a href="#">Consulting</a></li>
+                        </ul>
+                    </div>    
+                </div><!--/.col-md-3-->
+
+                <div class="col-md-3 col-sm-6">
+                    <div class="widget">
+                        <h3>Nos Partenaires</h3>
+                        <ul>
+                            <li><a href="www.minefop.gov.cm" title="Ministère de l'Emploi et de la Formation Professionnelle">Minfop</a></li>	
+                        </ul>
+                    </div>    
+                </div><!--/.col-md-3-->
+            </div>
+        </div>
+    </section><!--/#bottom-->
+	
+	<div class="top-bar">
+		<div class="container">
+			<div class="row">
+			    <div class="col-lg-12">
+				   <div class="social">
+						<ul class="social-share">
+						    <li class="couleurBlanc">Nous Suivre sur : </li>
+							<li><a href="https://www.facebook.com/institusalomon/?__fns&hash=Ac323pliE89bIieO"><i class="fa fa-facebook"></i></a></li>
+							<li><a href="https://twitter.com/The_Builders_IN"><i class="fa fa-twitter"></i></a></li>
+							<li><a href="https://www.linkedin.com/in/institutsalomon/"><i class="fa fa-linkedin"></i></a></li> 
+							<li><a href="https://plus.google.com/u/0/103239564321426732982" title="Vous pouvez visiter notre page GOOGLE+"><i class="fa fa-google-plus"></i></a></li>
+						</ul>
+				   </div>
+                </div>
+			</div>
+		</div><!--/.container-->
+	</div><!--/.top-bar-->
+	
+	<footer id="footer" class="midnight-blue">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    Copyright &copy; <?php echo date("Y", time());?> All right reserved. 
+                </div>
+
+                <div class="col-sm-6">
+                    <ul class="pull-right">
+                        <li><i class="fa fa-home fa-1x"></i><a href="index.php"> Accueil</a></li>
+                        <li><a href="about-us.php">Qui sommes-nous?</a></li>
+                        <li><li><i class="fa fa-comments"></i><a href="http://institutsalomon.blogspot.com/"> Blog</a></li>
+                        <li><i class="fa fa-envelope fa-1x"></i><a href="contact-us.php"> Contactez-Nous</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer><!--/#footer-->
